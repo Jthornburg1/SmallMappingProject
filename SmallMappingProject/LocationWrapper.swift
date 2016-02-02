@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+public protocol LocationListener {
+    func locationHandlerDidUpdateLocation(location: CLLocation)
+}
+
 class LocationWrapper: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
