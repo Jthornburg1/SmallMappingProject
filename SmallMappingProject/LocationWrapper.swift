@@ -6,17 +6,18 @@
 //  Copyright © 2016 Jon Thornburg. All rights reserved.
 //
 
-import UIKit
-import MapKit
-
 public protocol LocationListener {
     func locationHandlerDidUpdateLocation(location: CLLocation)
 }
+
+import UIKit
+import MapKit
 
 class LocationWrapper: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager = CLLocationManager()
     var currentUserLocation: CLLocation?
+    var locationListener: LocationListener?
     
     override init() {
         super.init()
@@ -44,6 +45,7 @@ class LocationWrapper: NSObject, CLLocationManagerDelegate {
         print("locationManager ")
         if let firstLocation = locations.first {
             print("locationManager first")
+            locationListener?.locationHandlerDidUpdateLocation(firstLocation)
         }
         currentUserLocation = locations.first
     }
