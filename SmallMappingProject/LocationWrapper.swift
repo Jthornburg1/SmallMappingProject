@@ -25,5 +25,22 @@ class LocationWrapper: NSObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = 100
     }
-
+    
+    func startLocationTracking(){
+        print("locationManager startLocationTracking")
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopLocationTracking(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("locationManager ")
+        if let firstLocation = locations.first {
+            print("locationManager first")
+        }
+        currentUserLocation = locations.first
+    }
 }
